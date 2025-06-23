@@ -16,17 +16,17 @@ export default function Home() {
   const handleFileUpload = async (file: File) => {
     setUploadedFile(file);
     setIsUploading(true);
-    
+  
     try {
       const formData = new FormData();
       formData.append('file', file);
-      
-      const response = await axios.post('/api/upload', formData, {
+  
+      const response = await axios.post('http://localhost:8081/upload', formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-      
+  
       setPort(response.data.port);
     } catch (error) {
       console.error('Error uploading file:', error);
@@ -36,45 +36,43 @@ export default function Home() {
     }
   };
   
+  
   const handleDownload = async (port: number) => {
     setIsDownloading(true);
-    
+  
     try {
-      // Request download from Java backend
-      const response = await axios.get(`/api/download/${port}`, {
+      const response = await axios.get(`http://localhost:8081/download/${port}`, {
         responseType: 'blob',
       });
-      
+  
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
       link.href = url;
-      
-      // Try to get filename from response headers
-      // Axios normalizes headers to lowercase, but we need to handle different cases
+  
+      // Extract filename from headers
       const headers = response.headers;
       let contentDisposition = '';
-      
-      // Look for content-disposition header regardless of case
+  
       for (const key in headers) {
         if (key.toLowerCase() === 'content-disposition') {
           contentDisposition = headers[key];
           break;
         }
       }
-      
+  
       let filename = 'downloaded-file';
-      
+  
       if (contentDisposition) {
-        const filenameMatch = contentDisposition.match(/filename="(.+)"/);
-        if (filenameMatch && filenameMatch.length === 2) {
-          filename = filenameMatch[1];
+        const match = contentDisposition.match(/filename="(.+)"/);
+        if (match && match[1]) {
+          filename = match[1];
         }
       }
-      
+  
       link.setAttribute('download', filename);
       document.body.appendChild(link);
       link.click();
-      link.remove();
+      document.body.removeChild(link);
     } catch (error) {
       console.error('Error downloading file:', error);
       alert('Failed to download file. Please check the invite code and try again.');
@@ -82,6 +80,7 @@ export default function Home() {
       setIsDownloading(false);
     }
   };
+  
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-4xl">
