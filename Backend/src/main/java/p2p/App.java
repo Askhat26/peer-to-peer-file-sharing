@@ -1,18 +1,18 @@
 package p2p;
 
-
 import p2p.controller.FileController;
 import java.io.IOException;
-
 
 public class App {
     public static void main(String[] args) {
         try {
-            // Start the API server on port 8080
-            FileController fileController = new FileController(8081);
+            int apiPort = 8081;
+
+
+            FileController fileController = new FileController(apiPort);
             fileController.start();
 
-            System.out.println("PeerLink server started on port 8080");
+            System.out.println("PeerLink server started on port " + apiPort);
             System.out.println("UI available at http://localhost:3000");
 
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
