@@ -21,7 +21,7 @@ PeerLink is a peer-to-peer file sharing platform built with Java and Next.js, en
 
 ## 🏗️ Project Structure
 
-```text
+
 PeerLink/
 ├── Backend/
 │   └── main/java/p2p/
@@ -44,16 +44,16 @@ Maven (for Java builds)
 
 ## Installation
     #Backend Setup
-    ```bash
+        bash
       mvn clean package
       java -jar target/p2p-1.0-SNAPSHOT.jar
-  ```
+  
     #🖥️ Frontend Setup
-    ```bash
+        bash
       cd Frontend
       npm install
       npm run dev
-   ```
+   
 
 ## 🔄 How It Works
 
