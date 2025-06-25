@@ -23,18 +23,18 @@ PeerLink is a peer-to-peer file sharing platform built with Java and Next.js, en
 
 
 PeerLink/
-├── Backend/
-│   └── main/java/p2p/
-│       ├── controller/     # API endpoints (HTTP handlers)
-│       ├── service/        # Business logic (includes multithreaded file server)
-│       ├── utils/          # Utility classes (e.g., code generation)
-│       └── App.java        # Main server entry point
-├── Frontend/               # Next.js frontend app
-│   └── src/
-│       ├── app/            # App routes
-│       └── components/     # Upload/Download/InviteCode components
-├── pom.xml                 # Maven config
-└── README.md
+├── Backend/ # Backend (Java with Spring Boot)
+│ └── main/java/p2p/
+│ ├── controller/ # API endpoints (HTTP handlers)
+│ ├── service/ # Business logic (includes multithreaded file server)
+│ ├── utils/ # Utility classes (e.g., code generation)
+│ └── App.java # Main server entry point
+├── Frontend/ # Frontend (Next.js app)
+│ └── src/
+│ ├── app/ # App routes
+│ └── components/ # Upload/Download/InviteCode components
+├── pom.xml # Maven configuration for backend
+└── README.md # Project overview and documentation
 
 ## 🚀 Getting Started
 Prerequisites
